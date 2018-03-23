@@ -1,5 +1,6 @@
 import itertools
 import string
+from time import sleep
 
 chars = string.ascii_letters + string.digits
 for url in itertools.permutations(chars, 6):
@@ -10,5 +11,5 @@ for url in itertools.permutations(chars, 6):
                 f.write("Requested Short URL: "+full_url+" Unshortened version: "+request_url+'\n')
                 f.close()
                 sleep(0.5)
-            except Exception as e:
-                sleep(1)
+        except Exception as e:
+            sleep(1)
