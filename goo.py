@@ -10,14 +10,14 @@ for url in itertools.permutations(chars, 6):
         try:
             request_url = urllib2.urlopen(full_url).geturl()
             with open('goo.gl_urls.csv', 'a') as f:
-                f.write("Requested Short URL,"+full_url+",Unshortened version,"+request_url+'\n')
+                f.write(full_url+","+request_url+'\n')
                 f.close()
                 sleep(0.5)
         except Exception as e:
             e = str(e)
             if "404" not in e:
                 with open('urls.txt', 'a') as f:
-                    f.write("Requested Short URL,"+full_url+",link returns error,"+e+'\n')
+                    f.write(full_url+","+e+'\n')
                     f.close()
             else:
                 pass
