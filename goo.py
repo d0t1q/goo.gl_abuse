@@ -12,7 +12,7 @@ for url in itertools.permutations(chars, 6):
             with open('goo.gl_urls.csv', 'a') as f:
                 f.write(full_url+","+request_url+'\n')
                 f.close()
-                sleep(0.5)
+                sleep(0.7)
         except Exception as e:
             e = str(e)
             if "404" not in e:
@@ -21,5 +21,5 @@ for url in itertools.permutations(chars, 6):
                     f.close()
             else:
                 pass
-            sleep(1)
+            sleep(1.5)
             
