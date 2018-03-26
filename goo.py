@@ -1,3 +1,5 @@
+#!/usr/bin/python
+import urllib2
 import itertools
 import string
 from time import sleep
@@ -7,9 +9,17 @@ for url in itertools.permutations(chars, 6):
         full_url = "http://goo.gl/" + "".join(url)
         try:
             request_url = urllib2.urlopen(full_url).geturl()
-            with open('urls.txt', 'a') as f:
-                f.write("Requested Short URL: "+full_url+" Unshortened version: "+request_url+'\n')
+            with open('goo.gl_urls.csv', 'a') as f:
+                f.write("Requested Short URL,"+full_url+",Unshortened version,"+request_url+'\n')
                 f.close()
                 sleep(0.5)
         except Exception as e:
+            e = str(e)
+            if "404" not in e:
+                with open('urls.txt', 'a') as f:
+                    f.write("Requested Short URL,"+full_url+",link returns error,"+e+'\n')
+                    f.close()
+            else:
+                pass
             sleep(1)
+            
